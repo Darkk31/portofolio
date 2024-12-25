@@ -19,6 +19,7 @@ body {
   font-family: "Poppins";
 }
 * {
+  
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   margin: 0;
@@ -117,6 +118,7 @@ ul {
   margin-top: 8px;
 }
 .row {
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   margin-left: -15px;
@@ -307,7 +309,7 @@ h3.my-profession {
   flex: 0 0 40%;
   max-width: 40%;
   text-align: center;
-  position: absolute;
+  position: relative;
 }
 .home-imgs::after {
   content: "";
@@ -326,7 +328,7 @@ h3.my-profession {
   width: 80px;
   border-top: 10px solid var(--skin-color);
   border-right: 10px solid var(--skin-color);
-  right: -218px;
+  right: -229px;
   top: -13px;
 }
 
@@ -724,7 +726,8 @@ h3.my-profession {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .home .home-img {
+  .home .home-img,
+  .home .home-imgs {
     align-items: center;
     justify-content: center;
     margin-top: 50px;
@@ -734,7 +737,9 @@ h3.my-profession {
     /* display: none; */
   }
   .home-img::before,
-  .home-img::after {
+  .home-img::after,
+  .home-imgs::before,
+  .home-imgs::after {
     display: none;
   }
 }
