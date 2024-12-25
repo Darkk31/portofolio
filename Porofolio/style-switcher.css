@@ -2,7 +2,7 @@
 {
     position: fixed;
     right: 0;
-    top: 60px;
+    top: 5px;
     padding: 15px;
     width: 200px;
     border: 1px solid var(--bg-black-50);
@@ -42,7 +42,8 @@
 }
 .style-switcher .day-night
 {
-    top: 55px;
+    top: 2px;
+    left: -120px;
 }
 .style-switcher h4
 {
