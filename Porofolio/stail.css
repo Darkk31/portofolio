@@ -17,9 +17,11 @@ body {
   line-height: 1.5;
   font-size: 16px;
   font-family: "Poppins";
+  cursor: url('skin/Cursor.png'), auto;
 }
+
+
 * {
-  
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   margin: 0;
@@ -34,6 +36,16 @@ body {
 }
 ul {
   list-style: none;
+}
+#threejs-background,
+#about-background{
+
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 .section {
   background: var(--bg-black-900);
@@ -558,7 +570,8 @@ h3.my-profession {
   text-align: center;
   transition: all 0.3s ease;
 }
-.service .service-item .service-item-inner .icon .fa {
+.service .service-item .service-item-inner .icon .fa,
+.service .service-item .service-item-inner .icon .fas {
   font-size: 40px;
   line-height: 60px;
   color: var(--skin-color);
@@ -567,7 +580,8 @@ h3.my-profession {
 .service .service-item .service-item-inner:hover .icon {
   background: var(--skin-color);
 }
-.service .service-item .service-item-inner:hover .icon .fa {
+.service .service-item .service-item-inner:hover .icon .fa,
+.service .service-item .service-item-inner:hover .icon .fas {
   font-size: 25px;
   color: #ffffff;
 }

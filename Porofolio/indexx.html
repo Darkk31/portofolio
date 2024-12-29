@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Darky Portfolio</title>
     <!-- ===== CSS Files ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/js/controls/OrbitControls.js"></script>
+    <script src="city.js"></script>
     <link rel="stylesheet" href="stail.css" />
     <link rel="stylesheet" href="skin/color-1.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- ====== Style Switcher ====== -->
     <link
       rel="stylesheet" href="skin/color-1.css" class="alternate-style" title="color-1" disabled/>
@@ -25,6 +27,7 @@
     <link rel="stylesheet" href="style-switcher.css" />
   </head>
   <body>
+    <div class="custom-cursor"></div>
     <!-- ===== Main Container Start ===== -->
     <div class="main-container">
       <!-- ===== Aside Start ===== -->
@@ -58,6 +61,7 @@
       <div class="main-content">
         <!-- ===== Home Section Start ===== -->
         <section class="home active section" id="home">
+          <div id="threejs-background"></div>
           <div class="container">
             <div class="row">
               <div class="home-info padd-15">
@@ -83,6 +87,7 @@
         <!-- ===== Home Section End ===== -->
         <!-- ===== About Section Start ===== -->
         <section class="about section" id="about">
+          <div id="about-background"></div>
           <div class="container">
             <div class="row">
               <div class="section-title padd-15">
@@ -129,8 +134,7 @@
                           href="#contact"
                           data-section-index="1"
                           class="btn hire-me"
-                          >Hire Me</a
-                        >
+                          >Hire Me</a>
                       </div>
                     </div>
                   </div>
@@ -181,43 +185,18 @@
                             <h4 class="timeline-title">
                               SMAS Yayasan Perguruan Wahidin 
                             </h4>
-                            <p class="timeline-text">
-                              
-                            </p>
+                            
                           </div>
                           <!-- ===== timeline item ===== -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-date">
-                              <i class="fa fa-calendar"></i> 2020 - 2022
-                            </h3>
-                            <h4 class="timeline-title">
-                              Higher secondary - ISC - Dreamland High School 
-                            </h4>
-                            <p class="timeline-text">
-                              
-                             
-                            </p>
-                          </div>
                           <!-- ===== timeline item ===== -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-date">
-                              <i class="fa fa-calendar"></i> 2010 - 2020
-                            </h3>
-                            <h4 class="timeline-title">
-                              Matriculation - ICSE - St Mary School
-                            </h4>
-                            <p class="timeline-text">
-                              
-                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                <div class="row">
                   <div class="experience padd-15">
-                    <h3 class="title">Experience</h3>
+                    <h3 class="title">Organization Experience</h3>
                     <div class="row">
                       <div class="timeline-box padd-15">
                         <div class="timeline shadow-dark">
@@ -225,46 +204,73 @@
                           <div class="timeline-item">
                             <div class="circle-dot"></div>
                             <h3 class="timeline-date">
-                              <i class="fa fa-calendar"></i> 2022 - Working
+                              <i class="fa fa-calendar"></i> 2018 - 2021
                             </h3>
                             <h4 class="timeline-title">
-                              Work as a Freelance - 3 years
+                              Anggota Osis - Bagian Konsumsi 
                             </h4>
                             <p class="timeline-text">
-                              Worked as a Freelancer at Fiverr & for Offline Clients National and
-International
+                              Mengelola anggaran untuk acara sekolah yang menghadirkan ratusan orang.
                             </p>
                           </div>
                           <!-- ===== timeline item ===== -->
                           <div class="timeline-item">
                             <div class="circle-dot"></div>
                             <h3 class="timeline-date">
-                              <i class="fa fa-calendar"></i> 2021 - Working
+                              <i class="fa fa-calendar"></i> 2023 - Now
                             </h3>
                             <h4 class="timeline-title">
-                              Tech Youtuber - 4 Years
+                              Para Eternal - Guardian
                             </h4>
                             <p class="timeline-text">
-                              Worked as a Tech Youtuber @TechworldAjit with 44,000+ Subscribers
+                            Menyelenggarakan turnamen internal & mengatur berlangsungnya acara.   
                             </p>
                           </div>
-                          <!-- ===== timeline item ===== -->
-                          <div class="timeline-item">
-                            <div class="circle-dot"></div>
-                            <h3 class="timeline-date">
-                              <i class="fa fa-calendar"></i> 2019 - Working
-                            </h3>
-                            <h4 class="timeline-title">
-                              Adhyatmik Bhajan - 6 years
-                            </h4>
-                            <p class="timeline-text">
-                              Worked as a Graphic Designer & video Editor at Adhyatmik Bhajan with
-1 Lakh+ Subscribers on Youtube<br><br>
-                            </p>
+
                           </div>
                         </div>
                       </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="experience padd-15">
+                      <h3 class="title">Work Experience</h3>
+                      <div class="row">
+                        <div class="timeline-box padd-15">
+                          <div class="timeline shadow-dark">
+                            <!-- ===== timeline item ===== -->
+                            <div class="timeline-item">
+                              <div class="circle-dot"></div>
+                              <h3 class="timeline-date">
+                                <i class="fa fa-calendar">2023 - Now </i>
+                              </h3>
+                              <h4 class="timeline-title">
+                                Sales Representative - CV Surya Mandiri Pratama
+                              </h4>
+                              <p class="timeline-text">
+                                Menjalin hubungan baik dengan klien, melakukan negosiasi harga, <br> memastikan target penjualan tercapai
+                              </p>
+                            </div>
+                            <!-- ===== timeline item ===== -->
+                            <div class="timeline-item">
+                              <div class="circle-dot"></div>
+                              <h3 class="timeline-date">
+                                <i class="fa fa-calendar"></i> 2023 - 2023
+                              </h3>
+                              <h4 class="timeline-title">
+                                Shopekeeper - Sendecor
+                              </h4>
+                              <p class="timeline-text">
+                              Mengelola operasional toko dan memberikan layanan kepada pelanggan<br>
+                              Serta meningkatkan penjualan harian 
+                              </p>
+                            </div>
+  
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
                   </div>
                 </div>
               </div>
@@ -285,11 +291,11 @@ International
               <div class="service-item padd-15">
                 <div class="service-item-inner">
                   <div class="icon">
-                    <i class="fa fa-mobile-alt"></i>
+                    <i class="fa fa-light fa-chart-simple"></i>
                   </div>
-                  <h4>App Design</h4>
+                  <h4>Marketing</h4>
                   <p>
-                    I design Apps that not only look beautiful but also offer exceptional functionality.
+                    Strategi pemasaran dan negosiasi untuk meningkatkan penjualan.
                   </p>
                 </div>
               </div>
@@ -298,11 +304,11 @@ International
               <div class="service-item padd-15">
                 <div class="service-item-inner">
                   <div class="icon">
-                    <i class="fa fa-laptop-code"></i>
+                    <i class="fa fa-light fa-headphones"></i>
                   </div>
-                  <h4>Web Design</h4>
+                  <h4>Customer Service</h4>
                   <p>
-                    I design Website that not only look beautiful but also offer exceptional functionality 
+                    Pelayanan pelanggan dan penyelesaian masalah
                   </p>
                 </div>
               </div>
@@ -311,11 +317,11 @@ International
               <div class="service-item padd-15">
                 <div class="service-item-inner">
                   <div class="icon">
-                    <i class="fa fa-palette"></i>
+                    <i class="fa fa-light fa-users"></i>
                   </div>
-                  <h4>Graphics Design</h4>
+                  <h4>Event Coordinatiion</h4>
                   <p>
-                    I design graphics that not only look beautiful but also convey deep meaning and purpose.
+                    Pengelolaan dan pelaksanaan acara komunitas.
                   </p>
                 </div>
               </div>
@@ -324,11 +330,11 @@ International
               <div class="service-item padd-15">
                 <div class="service-item-inner">
                   <div class="icon">
-                    <i class="fa fa-code"></i>
+                    <i class="fa fas fa-store-alt"></i></p>
                   </div>
-                  <h4>Web Development</h4>
+                  <h4>Shop Management</h4>
                   <p>
-                    I develop Website that not only look beautiful but also offer exceptional functionality 
+                    Pengelolaan stock, transaksi dan menyusun laporan penjualan.
                   </p>
                 </div>
               </div>
@@ -337,34 +343,17 @@ International
               <div class="service-item padd-15">
                 <div class="service-item-inner">
                   <div class="icon">
-                    <i class="fa fa-film"></i>
+                    <i class="fa fas fa-palette"></i>
                   </div>
-                  <h4>Video Editor</h4>
+                  <h4>Design</h4>
                   <p>
-                    I edit videos that not only look beautiful but also engage and captivate audiences.
-
-
-
-
-
-
-
+                    Membuat desain kreatif dan profesional untuk kebutuhan grafis, branding, dan media digital.
                   </p>
                 </div>
               </div>
               <!-- ===== Service item End ====== -->
               <!-- ===== Service item Start ====== -->
-              <div class="service-item padd-15">
-                <div class="service-item-inner">
-                  <div class="icon">
-                    <i class="fa fa-laptop"></i>
-                  </div>
-                  <h4>UI / UX Design</h4>
-                  <p>
-                    I design UI/UX that not only looks beautiful but also understands user requirements and behavior.
-                  </p>
-                </div>
-              </div>
+              
               <!-- ===== Service item End ====== -->
             </div>
           </div>
