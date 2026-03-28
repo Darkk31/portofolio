@@ -138,6 +138,7 @@ ul {
   position: relative;
 }
 .btn {
+  -webkit-tap-highlight-color: transparent;
   font-size: 16px;
   font-weight: 500;
   padding: 12px 35px;
@@ -150,8 +151,12 @@ ul {
   transition: all 0.3s ease;
 }
 .btn:hover {
-  transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.025);
 }
+
+
 .shadow-dark {
   box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
 }
@@ -223,7 +228,7 @@ ul {
   display: none;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.9s ease;
 }
 .aside .nav-toggler span {
   height: 2px;
@@ -232,6 +237,15 @@ ul {
   display: inline-block;
   position: relative;
 }
+/* Animasi untuk menu hamburger */
+.nav-toggler span {
+    transition: all 0.3s ease;
+}
+
+.nav-toggler.open span {
+    transform: rotate(90deg);
+}
+
 .aside .nav-toggler.open span {
   background-color: transparent;
 }
@@ -298,8 +312,7 @@ h3.hello {
   margin: 15px 0;
 }
 h3.hello span {
-  /* font-family: "Clicker Script", cursive; */
-
+  font-family: "Clicker Script", cursive;
   font-size: 30px;
   font-weight: 700;
   color: var(--skin-color);
@@ -308,12 +321,28 @@ h3.my-profession {
   font-size: 30px;
   margin: 15px 0;
 }
+/* Animasi fade in untuk teks */
+.hello, .my-profession {
+    animation: fadeInUp 2s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .typing {
   color: var(--skin-color);
 }
 .home-info p {
   margin-bottom: 40px;
-  font-size: 20px;
+  font-size: 20px !important;
   color: var(--text-black-700);
 }
 
@@ -330,7 +359,7 @@ h3.my-profession {
   width: 80px;
   border-bottom: 10px solid var(--skin-color);
   border-left: 10px solid var(--skin-color);
-  left: -38px;
+  left: -37px;
   bottom: -5px;
 }
 .home-imgs::before {
@@ -340,8 +369,8 @@ h3.my-profession {
   width: 80px;
   border-top: 10px solid var(--skin-color);
   border-right: 10px solid var(--skin-color);
-  right: -229px;
-  top: -13px;
+  right: -241px;
+  top: -11px;
 }
 
 .home .home-img {
@@ -350,25 +379,25 @@ h3.my-profession {
   text-align: center;
   position: relative;
 }
-.home-img::after {
+.home-img.padd-15::after {
   content: "";
   position: absolute;
   height: 80px;
   width: 80px;
   border-bottom: 10px solid var(--skin-color);
   border-right: 10px solid var(--skin-color);
-  right: 23px;
-  bottom: 10px;
+  right: -10px;
+  bottom: -5px;
 }
-.home-img::before {
+.home-img.padd-15::before {
   content: "";
   position: absolute;
   height: 80px;
   width: 80px;
   border-top: 10px solid var(--skin-color);
   border-left: 10px solid var(--skin-color);
-  left: -23px;
-  top: -13px;
+  left: -21px;
+  top: -11px;
 }
 .home .home-img img {
   margin-left: -40px ;
@@ -469,6 +498,33 @@ h3.my-profession {
   font-weight: 400;
   line-height: 40px;
 }
+.lang-btn {
+  position: fixed;
+  top: 20px;
+  right: 140px;
+  z-index: 999;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #ec1839;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+.lang.id{
+  display: none;
+}
+body.show-id .lang.en {
+  display: none;
+}
+body.show-id .lang.id {
+  display: inline;
+}
+.lang{
+  display: inline;
+  transition: all 0.3s ease;
+}
 .about .about-content .education,
 .about .about-content .experience {
   flex: 0 0 50%;
@@ -540,6 +596,27 @@ h3.my-profession {
   font-size: 16px;
   text-align: justify;
   color: var(--text-black-700);
+}
+.about .timeline .timeline-item p {
+  font-size:16px;
+  line-height: 1.8;
+  color: var(--text-black-700);
+  margin-bottom: 14px;
+}
+.timeline .timeline-item ul {
+  list-style: disc;
+  margin: 0;
+  padding: 20px;
+  color: var(--text-black-700);
+}
+.timeline .timeline-item ul li {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-black-700);
+  margin-bottom: 8px;
+}
+.timeline .timeline-item ul li:last-child {
+  margin-bottom: 0;
 }
 /* service */
 .service .container {
@@ -636,7 +713,7 @@ h3.my-profession {
 .contact-sub-title {
   color: var(--text-black-900);
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   margin-bottom: 20px;
 }
 .contact .contact-info-item {
@@ -701,28 +778,41 @@ h3.my-profession {
   height: 50px;
   padding: 0 50px;
 }
+.style-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+.style-switcher .top-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
 @media (max-width: 1199px) {
   .section .container {
     padding-top: 70px;
   }
   .aside {
-    left: -270px;
+    width: 200px;
+    left: -200px;
   }
   .aside.open {
     left: 0;
   }
   .aside .nav-toggler {
     display: flex;
-    left: 30px;
+    left: 10px;
   }
   .aside .nav-toggler.open {
-    left: 300px;
+    left: 10px;
   }
   .section {
     left: 0;
   }
   .section.open {
-    left: 270px;
+    left: 0;
   }
   .about .about-content .personal-info .info-item p span {
     display: block;
@@ -785,11 +875,6 @@ h3.my-profession {
     font-weight: 300;
   }
 }
-/* @media (max-width: 767px) {
-  * {
-    font-size: 1px;
-  }
-} */
 
 .centerr {
   display: flex;
@@ -810,6 +895,5 @@ h3.my-profession {
 }
 hr {
   /* color: #15151500; */
-
   border: 1px solid var(--bg-black-50);
 }
