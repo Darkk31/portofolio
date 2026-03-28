@@ -1,14 +1,152 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>City 3D</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'><link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.skill {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: rise 10s infinite;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+    </style>
 </head>
 <body>
+    <div class="bubbles"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <section id="home" class="section">
+        <h1>Selamat Datang di Portfolio Saya</h1>
+    </section>
 
+    <section id="about" class="section">
+        <h2>Tentang Saya</h2>
+        <p>Saya seorang sales marketing dengan keahlian dalam desain, pengembangan front-end, dan strategi pemasaran.</p>
+    </section>
 
+    <section id="projects" class="section">
+        <h2>Proyek</h2>
+        <p>Berikut adalah beberapa proyek yang telah saya kerjakan.</p>
+    </section>
+
+    <section id="skills" class="section">
+        <h2>Keahlian</h2>
+        <div class="grid">
+            <div class="skill">Desain</div>
+            <div class="skill">Front-End Development</div>
+            <div class="skill">Strategi Pemasaran</div>
+            <div class="skill">Analisis</div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Kontak</h2>
+        <p>Anda dapat menghubungi saya melalui email: contoh@email.com</p>
+    </section>
+
+    <script src="">
+const bubblesContainer = document.querySelector('.bubbles');
+
+function createBubble() {
+    const bubble = document.createElement('div');
+    const size = Math.random() * 50 + 10; // ukuran bubble
+    const left = Math.random() * 100; // posisi horizontal
+    const duration = Math.random() * 5 + 5; // durasi animasi
+
+    bubble.classList.add('bubble');
+    bubble.style.width = `${size}px`;
+   
+    </script>
 </body>
 </html>

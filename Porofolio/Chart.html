@@ -1,0 +1,438 @@
+<!<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+                body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.5;
+            color: #e5e7eb;
+            background: linear-gradient(135deg, #2d1b69 0%, #1a1a3c 100%);
+            min-height: 100vh;
+        }
+
+
+        .main-container {
+            max-width: 1200px;
+            
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(.5px);
+        }
+
+        .header {
+            background: linear-gradient(90deg, #6b46c1, #3182ce);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            height: 600px; /* Tinggi fixed untuk stabilitas */
+            position: relative;
+        }
+
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #6b46c1;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-title {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .metric-description {
+            color: #cbd5e0;
+            font-size: 0.95rem;
+        }
+
+        .overview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .overview h2 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: #6b46c1;
+            font-weight: 600;
+        }
+
+        .detail-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-section h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .achievement-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #e2e8f0;
+        }
+
+        .achievement-list li::before {
+            content: "•";
+            color: #6b46c1;
+            position: absolute;
+            left: 0;
+        }
+
+        .bar {
+            fill: #6b46c1;
+            transition: fill 0.3s ease;
+        }
+
+        .bar:hover {
+            fill: #3182ce;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 9999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #revenue-chart text {
+            fill: #e2e8f0;
+        }
+
+        #revenue-chart path,
+        #revenue-chart line {
+            stroke: rgba(255, 255, 255, 0.2);
+        }
+
+        .chart-title {
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .chart-container{
+                max-height: 300px;
+            }
+        }
+        .bubbles {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+        
+    </style>
+</head>
+
+</head>
+<body>
+        <div class="bubbles"></div>
+    <div class="main-container">
+        <div class="header">
+            <h1>Portfolio Performa Penjualan</h1>
+            <p>Analisis Pertumbuhan & Pencapaian 2024</p>
+        </div>
+
+    <div class="content">
+             <div class="chart-container">
+        <h2 class="chart-title">Monthly Revenue Chart</h2>
+        <div id="tooltip" class="tooltip"></div>
+        <svg width="100%" height="90%" id="revenue-chart" preserveAspectRatio="xMidYMid meet" viewBox="40 200 900 200">
+            <g transform="translate(50,20)"></g>
+        </svg>
+    </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Pencapaian Tertinggi</div>
+                    <div class="metric-value">Rp 1,23 M</div>
+                    <div class="metric-description">Dicapai pada Juni 2024, menandai rekor baru dalam sejarah perusahaan dengan pertumbuhan 28% dari bulan sebelumnya</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Rata-rata Bulanan</div>
+                    <div class="metric-value">Rp 985 Jt</div>
+                    <div class="metric-description">Melebihi target tahunan sebesar Rp 900 Jt, menunjukkan stabilitas dan pertumbuhan berkelanjutan</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Pertumbuhan YoY</div>
+                    <div class="metric-value">64.8%</div>
+                    <div class="metric-description">Melampaui ekspektasi pasar dan benchmark industri yang berada di kisaran 45%, membuktikan efektivitas strategi ekspansi</div>
+                </div>
+            </div>
+
+            <div class="overview">
+                <h2>Ringkasan Performa</h2>
+                <p><span class="highlight">Pencapaian Konsisten:</span> 
+                Sepanjang tahun 2024, portofolio mencatatkan prestasi membanggakan dengan konsistensi omset di atas Rp 900 juta per bulan. Pencapaian puncak di bulan Juni 2024 sebesar Rp 1,23 M menjadi bukti nyata hasil optimalisasi strategi penjualan dan penetrasi pasar yang efektif. Keberhasilan ini didukung oleh peningkatan efisiensi operasional dan penguatan tim sales yang terlatih.</p>
+                
+                <p><span class="highlight">Ketahanan Bisnis:</span>
+                Di tengah dinamika pasar yang penuh tantangan, portofolio menunjukkan resiliensi luar biasa. Periode April 2024 yang mencatatkan omset Rp 735 juta - terendah sepanjang tahun - berhasil direspons dengan strategi pemulihan yang tepat sasaran. Implementasi program retensi pelanggan dan diversifikasi produk memungkinkan pembalikan cepat, dengan pertumbuhan 25% di bulan Mei dan puncaknya di Juni. Hal ini membuktikan kemampuan adaptasi dan ketangguhan model bisnis yang telah dibangun.</p>
+
+                <p><span class="highlight">Fondasi untuk Pertumbuhan:</span>
+                Rata-rata omset bulanan Rp 985 juta menjadi landasan solid untuk ekspansi ke depan. Tren positif yang konsisten sepanjang 2024 didukung oleh beberapa faktor kunci: peningkatan penetrasi di segmen premium (kontribusi 45%), ekspansi jaringan distribusi (pertumbuhan 35% year-on-year), dan penguatan platform digital (peningkatan transaksi online sebesar 85%). Fundamental yang kuat ini membuka peluang untuk penetrasi pasar baru dan inovasi produk di tahun mendatang.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>Capaian Strategis 2024</h3>
+                <ul class="achievement-list">
+                    <li>Peningkatan efisiensi operasional sebesar 28% melalui implementasi sistem manajemen inventory terintegrasi dan optimasi rantai pasok.</li>
+                    <li>Ekspansi ke 5 wilayah baru dengan tingkat penetrasi pasar rata-rata 15% dalam 6 bulan pertama operasional.</li>
+                    <li>Kesuksesan peluncuran 3 lini produk premium dengan margin kontribusi 35% di atas rata-rata portofolio.</li>
+                    <li>Penguatan presence digital melalui platform e-commerce yang menghasilkan pertumbuhan revenue digital sebesar 85% year-on-year.</li>
+                </ul>
+
+                <h3 style="margin-top: 2rem;">Proyeksi dan Target 2025</h3>
+                <ul class="achievement-list">
+                    <li>Target pertumbuhan omset 40% dengan fokus pada pengembangan pasar baru dan penguatan pangsa pasar di wilayah existing.</li>
+                    <li>Rencana ekspansi ke 8 wilayah potensial baru dengan total addressable market sebesar Rp 5,6 T.</li>
+                    <li>Inovasi produk berkelanjutan dengan target peluncuran 5 SKU baru di segmen premium dan middle-up.</li>
+                    <li>Pengembangan kapabilitas digital dengan target kontribusi penjualan online mencapai 35% dari total revenue.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script>
+        const data = [
+            { month: "Jun 23", value: 752208350 },
+            { month: "Jul 23", value: 927465300 },
+            { month: "Aug 23", value: 845742550 },
+            { month: "Sep 23", value: 944695200 },
+            { month: "Oct 23", value: 995081500 },
+            { month: "Nov 23", value: 951454100 },
+            { month: "Dec 23", value: 1057989500 },
+            { month: "Jan 24", value: 983601100 },
+            { month: "Feb 24", value: 942138900 },
+            { month: "Mar 24", value: 1206035800 },
+            { month: "Apr 24", value: 735844350 },
+            { month: "May 24", value: 951505151 },
+            { month: "Jun 24", value: 1239577250 },
+            { month: "Jul 24", value: 1177726150 },
+            { month: "Aug 24", value: 1100662350 },
+            { month: "Sep 24", value: 973725800 },
+            { month: "Oct 23", value: 1171413612 },
+            { month: "Nov 24", value: 803704266 },
+            { month: "Dec 24", value: 986435612 }
+        ];
+
+        const margin = { top: 20, right: 20, bottom: 60, left: 80 };
+        const width = 960 - margin.left - margin.right;
+        const height = 500 - margin.top - margin.bottom;
+
+        const svg = d3.select("#revenue-chart")
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.2);
+
+        const y = d3.scaleLinear()
+            .range([height, 0]);
+
+        x.domain(data.map(d => d.month));
+        y.domain([0, d3.max(data, d => d.value)]);
+
+        const formatRevenue = (value) => {
+            return "Rp." + value.toLocaleString('id-ID');
+        };
+
+        const tooltip = d3.select("#tooltip");
+
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-45)");
+
+        svg.append("g")
+            .call(d3.axisLeft(y)
+                .tickFormat(d => (d / 1000000).toFixed(0) + "M"));
+
+        svg.selectAll(".bar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar animate-bar")
+            .attr("x", d => x(d.month))
+            .attr("width", x.bandwidth())
+            .attr("y", height)
+            .attr("height", 0)
+            .on("mousemove", function(event, d) {
+                tooltip
+                    .style("left", (event.pageX - 60) + "px")
+                    .style("top", (event.pageY - 120) + "px")
+                    .style("opacity", 1)
+                    .html(`${d.month}<br>${formatRevenue(d.value)}`);
+            })
+            .on("mouseout", function() {
+                tooltip.style("opacity", 0);
+            })
+            .transition()
+            .duration(1000)
+            .delay((d, i) => i * 100)
+            .attr("y", d => y(d.value))
+            .attr("height", d => height - y(d.value));
+            
+                    // Initialize Lucide icons if needed
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        const bubblesContainer = document.querySelector('.bubbles');
+        
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            // Random size between 10px and 30px
+            const size = Math.random() * 20 + 10;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            
+            // Random horizontal position
+            bubble.style.left = `${Math.random() * 100}%`;
+            
+            // Random animation duration between 6 and 12 seconds
+            bubble.style.animationDuration = `${Math.random() * 10 + 6}s`;
+            
+            bubblesContainer.appendChild(bubble);
+            
+            // Remove bubble after animation ends
+            setTimeout(() => {
+                bubble.remove();
+            }, 12000);
+        }
+
+        // Create new bubbles periodically
+        setInterval(createBubble, 300);
+
+        // Create initial set of bubbles
+        for(let i = 0; i < 20; i++) {
+            setTimeout(createBubble, 300 * i);
+        }
+    </script>
+</body>
+</html>
