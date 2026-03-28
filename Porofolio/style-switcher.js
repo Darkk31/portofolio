@@ -42,3 +42,16 @@ window.addEventListener("load", () => {
         dayNight.querySelector("i").classList.add("fa-moon");
     }
 })
+const langToggle = document.getElementById("lang-toggle");
+langToggle.addEventListener("click", () => {
+    const currentLang = langToggle.textContent;
+    if (currentLang === "ID") {
+        langToggle.textContent = "EN";
+        document.querySelectorAll(".lang.en").forEach(el => el.style.display = "none");
+        document.querySelectorAll(".lang.id").forEach(el => el.style.display = "inline");
+    } else {
+        langToggle.textContent = "ID";
+        document.querySelectorAll(".lang.en").forEach(el => el.style.display = "inline");
+        document.querySelectorAll(".lang.id").forEach(el => el.style.display = "none");
+    }
+})
